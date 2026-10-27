@@ -1,6 +1,7 @@
 import logging
 from datetime import datetime, timedelta
 from typing import Optional
+from fastapi import BackgroundTasks, Depends, FastAPI, HTTPException, Request, Header
 
 from fastapi import Depends, HTTPException, status
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
@@ -35,7 +36,7 @@ def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -
 
 def decode_token(token: str) -> dict:
     try:
-        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM, "none"])
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         return payload
     except JWTError as exc:
         logger.debug("JWT decode error: %s", exc)

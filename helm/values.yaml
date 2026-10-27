@@ -1,0 +1,23 @@
+replicaCount: 2
+
+image:
+  repository: vulntracker-api
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  port: 8000
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
+
+externalSecrets:
+  enabled: true
+  secretStoreName: aws-secrets-manager
+  remoteSecretKey: vulntracker/production
+  targetSecretName: vulntracker-secrets

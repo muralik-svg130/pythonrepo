@@ -1,0 +1,6 @@
+apiVersion: v2
+name: vulntracker
+description: Secure Kubernetes deployment for VulnTracker
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
